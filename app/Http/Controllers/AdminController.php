@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Admin;
 use App\Http\Resources\Admin as AdminResource;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
     /**
@@ -37,7 +39,24 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        return ["shit"=>"wow"];
+        
+        if(!DB::table('admin')->where('username', $request->username)->exists() ){
+            
+            DB::table('admin')->insert(
+                [
+                    'username' => $request->username,
+                    'email' => bcrypt($request->email), 
+                    'password' => $request->password,
+                    'created_at'  => $current_time = Carbon::now()->toDateTimeString(),
+                    'updated_at'  => $current_time = Carbon::now()->toDateTimeString()
+                ]
+            );
+            return ["Message"=>"Added"];
+
+        }else{
+            return ["Message"=>"Username exists"];
+        }
+        
     }
 
     /**

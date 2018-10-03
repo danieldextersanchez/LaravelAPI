@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //List Admins
 Route::get('admin','AdminController@index')->middleware('headers');
-Route::post('admin','AdminController@store')->middleware('headers') ;
+Route::put('admin','AdminController@store')->middleware('headers') ;
 Route::get('admin/{id}','AdminController@show')->middleware('headers') ;
