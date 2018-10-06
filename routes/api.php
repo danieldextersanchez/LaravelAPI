@@ -22,3 +22,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('admin','AdminController@index')->middleware('headers');
 Route::put('admin','AdminController@store')->middleware('headers') ;
 Route::get('admin/{id}','AdminController@show')->middleware('headers') ;
+
+
+Route::get('products','products@index')->middleware('headers');
+Route::put('products','products@put')->middleware('headers');
+
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'AdminController@login')->middleware('headers');
+    Route::post('signup', 'AuthController@signup');
+  
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+        Route::get('logout', 'AuthController@logout');
+        Route::get('user', 'AuthController@user');
+    });
+});
