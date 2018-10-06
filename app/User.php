@@ -8,7 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
+
     public $table = "admin";
+
+    
     use Notifiable, HasApiTokens;
 
     
