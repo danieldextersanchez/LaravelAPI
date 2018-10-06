@@ -1,6 +1,6 @@
 <?php
 
-$DATABASE_URL =  parse_url(getenv("HEROKUDATABASE"));
+$DATABASE_URL =  parse_url("postgres://cnoveinvlvuycs:c0c55670b4a9d4d57fc7682fc023c76a0105785831fa065ad0337edcb4c63dd5@ec2-54-225-97-112.compute-1.amazonaws.com:5432/d90tji90opict3");
 
 
 
