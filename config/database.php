@@ -1,5 +1,11 @@
 <?php
 
+$DATABASE_URL =  parse_url("postgres://cnoveinvlvuycs:c0c55670b4a9d4d57fc7682fc023c76a0105785831fa065ad0337edcb4c63dd5@ec2-54-225-97-112.compute-1.amazonaws.com:5432/d90tji90opict3");
+
+
+
+
+
 return [
 
     /*
@@ -13,7 +19,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'heroku'),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,10 +59,22 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'heroku'=>[
+            'driver' => 'pgsql',
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'require',
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '127.y0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
