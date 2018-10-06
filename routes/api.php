@@ -31,9 +31,7 @@ Route::put('products','products@put')->middleware('headers');
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AdminController@login')->middleware('headers');
-    Route::post('signup', 'AuthController@signup');
-  
+    Route::post('login', 'AdminController@login')->middleware('headers');  
     Route::group([
       'middleware' => 'auth:api'
     ], function() {
