@@ -70,7 +70,7 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'require',
-        ]
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
