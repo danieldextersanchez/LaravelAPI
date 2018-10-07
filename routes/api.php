@@ -28,14 +28,15 @@ Route::get('products','products@index')->middleware('headers');
 Route::put('products','products@put')->middleware('headers');
 
 
+
+
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AdminController@login')->middleware('headers');  
-    Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
-        Route::get('logout', 'AuthController@logout');
-        Route::get('user', 'AuthController@user');
+    Route::post('login', 'AdminController@login')->middleware('headers'); 
+  
+    Route::middleware(['auth:api', 'headers'])->group(function() {
+        Route::get('logout', 'AdminController@logout');
     });
 });

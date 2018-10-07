@@ -68,6 +68,7 @@ class AdminController extends Controller
                 'message' => 'Unauthorized'
             ], 401);
         $user = $request->user();
+
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me)
@@ -81,6 +82,8 @@ class AdminController extends Controller
             )->toDateTimeString()
         ]);
     }
+
+    
 
     public function logout(Request $request)
     {
